@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+	<h1>Test Upload Form</h1>
+	<section class="w3-row">
+		<div class="w3-col w3-container m4"></div>
+		<div class="w3-col w3-container m4">
+
+		<form class="w3-container" method="post" novalidate enctype="multipart/form-data">
+		{{  form.hidden_tag() }}
+
+		<section class="w3-margin-bottom">
+			{{ form.caption.label }}
+			{% if form.caption.errors %}
+				{{ form.caption(class="w3-input w3-border w3-border-red") }}
+				<div class="invalid-feedback">
+					{% for error in form.caption.errors %}
+						<span class="w3-small w3-text-red w3-margin-bottom">{{ error }}</span>
+					{% endfor %}
+				</div>
+			{% else %}
+				{{ form.caption(class="w3-input") }}
+			{% endif %}
+		</section>
+
+		<section class="w3-margin-bottom">
+			{{ form.upload.label(class="w3-margin-top") }}
+			{% if form.upload.errors %}
+				{{ form.upload(class="w3-input w3-border w3-border-red") }}
+				<div class="invalid-feedback">
+					{% for error in form.upload.errors %}
+						<span class="w3-small w3-text-red w3-margin-bottom">{{ error }}</span>
+					{% endfor %}
+				</div>
+			{% else %}
+				{{ form.upload(class="w3-input") }}
+			{% endif %}
+		</section>
+		<button type="submit" class="w3-button w3-round w3-blue">Upload</button>
+		</form>
+
+		</div>
+		<div class="w3-col w3-container m4"></div>
+	</section>
+
+{% endblock %}
